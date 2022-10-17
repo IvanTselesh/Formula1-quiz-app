@@ -1,0 +1,20 @@
+.userWrap {
+    display: flex;
+    border: 1px solid #241f20;
+    border-radius: 10px;
+    width: 250px;
+    padding: 5px;
+}
+
+.userWrapIcon {
+    margin: 0 10px;
+    background: #f62300;
+    color: #f2f2f2;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.userWrapContent {
+    align-items: center;
+    display: flex;
+}
