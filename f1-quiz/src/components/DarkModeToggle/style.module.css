@@ -1,0 +1,61 @@
+.switchCheckbox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: flex-end;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f2f2f2;
+    border: 0.5px solid #241f20;
+    border-radius: 10px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.slider:before {
+    content: "";
+    background-image: url(./moon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    border-radius: 10px;
+    height: 20px;
+    width: 20px;
+    left: 8px;
+    bottom: 4px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #f2f2f2;
+}
+
+input:checked + .slider:before {
+    background-image: url(./moon-dark.svg);
+    background-color: #f2f2f2;
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}

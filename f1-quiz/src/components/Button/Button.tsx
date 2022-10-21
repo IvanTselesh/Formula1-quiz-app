@@ -1,4 +1,6 @@
 import styles from "./style.module.css";
+import {useContext} from "react";
+import {Context} from "../../App";
 
 interface IButton {
   name: string
@@ -6,5 +8,11 @@ interface IButton {
 }
 
 export const Button = (props: IButton) => {
-  return <button className={styles.button} onClick={props.onClick}>{props.name}</button>
+  const { isDark } = useContext(Context);
+
+  const getBtnColor = (isDark: boolean) => {
+    return `${isDark ? styles.darkBtn : styles.lightBtn}`
+  };
+
+  return <button className={`${styles.button} ${getBtnColor(isDark)}`} onClick={props.onClick}>{props.name}</button>
 }

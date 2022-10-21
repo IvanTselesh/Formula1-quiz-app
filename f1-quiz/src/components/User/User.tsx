@@ -5,7 +5,7 @@ interface IUser {
 };
 
 export const User = (props: IUser) => {
-  const init = props.name.split(' ')
+  const init = props.name.split(' ');
 
   return <div className={styles.userWrap}>
     <div className={styles.userWrapIcon}>

@@ -1,4 +1,13 @@
 .container {
     padding: 15px;
     background: #cecece;
+    min-height: 100vh;
+    color: #f62300;
+}
+
+.darkContainer {
+    padding: 15px;
+    background: #656565;
+    min-height: 100vh;
+    color: #4e0d02;
 }
