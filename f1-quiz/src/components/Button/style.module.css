@@ -1,0 +1,26 @@
+.button {
+    width: 150px;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.lightBtn:active {
+    background: #c62300;
+}
+
+.lightBtn {
+    border: 1px solid #f62300;
+    background: #f62300;
+    color: #f2f2f2;
+}
+
+.darkBtn {
+    border: 1px solid #4e0d02;
+    background: #4e0d02;
+    color: #f2f2f2;
+}
+
+.darkBtn:active {
+    background: #2c0801;
+}
