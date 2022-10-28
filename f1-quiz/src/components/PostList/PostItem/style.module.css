@@ -4,8 +4,10 @@
     cursor: pointer;
     margin: 20px;
     padding: 10px;
+    align-items: center;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(36,31,32,0.25), 0 10px 10px rgba(36,31,32,0.22);
+    cursor: pointer;
 }
 
 .darkCard {
