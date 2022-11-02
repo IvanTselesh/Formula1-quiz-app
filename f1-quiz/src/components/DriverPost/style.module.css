@@ -1,0 +1,34 @@
+.postWrap {
+    width: 400px;
+    text-align: center;
+    margin: 40px auto;
+}
+
+.postWrapList {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.postWrapListItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+}
+
+.postWrapListImg {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid inherit;
+}
+
+.postWrapListImgItem {
+    width: 100%;
+}

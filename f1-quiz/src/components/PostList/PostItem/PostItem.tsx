@@ -16,7 +16,6 @@ export interface IPost {
 
 export const PostItem = (props: IPost) => {
   const { isDark } = useContext(Context);
-  // const { ...posts } = props;
 
   return (
     <div key={props.id} className={`${styles.card} ${isDark ? styles.darkCard : styles.lightCard}`} onClick={props.onClick}>
