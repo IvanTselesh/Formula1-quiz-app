@@ -12,12 +12,11 @@ import {ErrorPage} from "../pages/ErrorPage/ErrorPage";
 import {CircuitItemPage} from "../pages/CircuitItemPage/CircuitItemPage";
 import {ConstructorItemPage} from "../pages/ConstructorItemPage/ConstructorItemPage";
 import {DriverItemPage} from "../pages/DriverItemPage/DriverItemPage";
-import {Loader} from "../components/Loader/Loader";
 
 export const RootRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Loader />} />
+      <Route path="/" element={<MainPage />} />
       <Route path="/reg-success" element={<RegConfirm />} />
       <Route path="/email-confirm" element={<EmailConfirm />} />
       <Route path="/drivers" element={<DriversPage />} />

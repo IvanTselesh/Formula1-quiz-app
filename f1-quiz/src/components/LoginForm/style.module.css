@@ -13,3 +13,8 @@
 .formWrapContent label {
     font-size: 18px;
 }
+
+.error {
+    color: #FD292F;
+    width: 300px;
+}

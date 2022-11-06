@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import {RootRouter} from "./router/router";
 import {IUser} from "./components/types/auth";
+import { NotificationContainer } from 'react-notifications';
 
 export const Context = createContext<{
   isDark: boolean;
@@ -18,7 +19,7 @@ export const Context = createContext<{
 
 const getTheme = () => {
   const isDark = localStorage.getItem('isDark');
-  const [user, setUser] = useState<IUser | null>(null);
+  // const [user, setUser] = useState<IUser | null>(null);
 
   if(isDark === 'true') {
     return true;
@@ -35,12 +36,12 @@ function App() {
   }, [isDark])
 
   return (
-    <Context.Provider value={{isDark: isDark, setIsDark: setIsDark, user: null, setUser: (value) => {}}}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Context.Provider value={{isDark: isDark, setIsDark: setIsDark, user: null, setUser: (value) => {}}}>
         <RootRouter />
-      </BrowserRouter>
-    </Context.Provider>
-
+      </Context.Provider>
+      <NotificationContainer />
+    </BrowserRouter>
   );
 }
 

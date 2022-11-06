@@ -5,6 +5,7 @@ interface IInput {
   text: string
   placeholder: string
   onChange: ChangeEventHandler<HTMLInputElement>
+  type?: string
 };
 
 export const Input = (props: IInput) => {
