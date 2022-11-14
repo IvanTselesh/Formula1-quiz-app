@@ -8,7 +8,7 @@ import {ICircuit} from "../../types/post";
 
 export const CircuitPost = () => {
   const param = useParams();
-  const [post, setPost] = useState<[]>([]);
+  const [postData, setPostData] = useState<[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export const CircuitPost = () => {
         return response.json();
       })
       .then((values) => {
-        setPost(values.response);
+        setPostData(values.response);
       })
   }, []);
 
@@ -28,7 +28,7 @@ export const CircuitPost = () => {
   return (
     <div className={styles.postWrap}>
       <ul className={styles.postWrapList}>
-        {post.map((item: ICircuit) => {
+        {postData.map((item: ICircuit) => {
           return (
             <PostTemplate
               type='circuit'

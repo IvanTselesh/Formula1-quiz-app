@@ -13,7 +13,7 @@ interface IDriverPost {
 }
 
 export const DriverPost = () => {
-  const [postData, setPostData] = useState<any>([]);
+  const [postData, setPostData] = useState<[]>([]);
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
 

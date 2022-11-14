@@ -7,7 +7,7 @@ import {PostTemplate} from "../PostTemplate/PostTemplate";
 import {IConstructor} from "../../types/post";
 
 export const ConstructorPost = () => {
-  const [post, setPost] = useState<[]>([]);
+  const [postData, setPostData] = useState<[]>([]);
   const navigate = useNavigate();
   const param = useParams();
 
@@ -17,7 +17,7 @@ export const ConstructorPost = () => {
         return response.json();
       })
       .then((values) => {
-        setPost(values.response);
+        setPostData(values.response);
       })
   }, []);
 
@@ -28,7 +28,7 @@ export const ConstructorPost = () => {
   return (
     <div className={styles.postWrap}>
       <ul className={styles.postWrapList}>
-        {post.map((item: IConstructor) => {
+        {postData.map((item: IConstructor) => {
           return (
             <PostTemplate
               type='constructor'
