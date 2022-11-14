@@ -21,3 +21,9 @@
     height: 100%;
     background: #656565;
 }
+
+.userButtons {
+    display: flex;
+    justify-content: space-between;
+    width: 320px;
+}

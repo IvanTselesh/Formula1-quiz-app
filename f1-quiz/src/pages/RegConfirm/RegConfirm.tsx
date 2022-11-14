@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 export const RegConfirm = () => {
   const navigate = useNavigate();
+  const email = localStorage.getItem('email');
 
   const returnOnClick = () => {
     navigate('/')
@@ -14,7 +15,7 @@ export const RegConfirm = () => {
     <Container>
       <Header />
       <InfoTemplate textBtn='Home' title='Registration Confirmation' onClick={returnOnClick}>
-        Please activate your account with the activation link in the email test@gmail.com. Please check your email
+        Please activate your account with the activation link in the email {email}@gmail.com. Please check your email
       </InfoTemplate>
     </Container>
   )

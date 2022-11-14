@@ -21,7 +21,7 @@ export interface IDriver {
   birthdate: string
   birthplace: string
   number: number
-  highest_rate_finish: {
+  highest_race_finish: {
     position: number
     number: number
   }

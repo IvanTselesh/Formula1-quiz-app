@@ -1,6 +1,7 @@
 import styles from "./style.module.css";
 import {useContext} from "react";
 import {Context} from "../../../App";
+import {useNavigate} from "react-router-dom";
 
 export interface IPost {
   logo?: string;

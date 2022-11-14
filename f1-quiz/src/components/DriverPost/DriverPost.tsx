@@ -1,67 +1,57 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {options} from "../../api/posts";
+import {ChangeEventHandler, useEffect, useState} from "react";
+import {fetchDriverPost, options} from "../../api/posts";
 import styles from "../DriverPost/style.module.css";
 import {Button} from "../Button/Button";
+import {PostTemplate} from "../PostTemplate/PostTemplate";
+import {IDriver} from "../../types/post";
+import {Input} from "../Input/Input";
+
+interface IDriverPost {
+  search: string
+  post: IDriver
+}
 
 export const DriverPost = () => {
-  const param = useParams();
-  const [post, setPost] = useState<[]>([]);
+  const [postData, setPostData] = useState<any>([]);
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
+  const handleOnChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setSearch(event.target.value);
+  }
+
   useEffect(() => {
-    const promise = fetch(`https://api-formula-1.p.rapidapi.com/drivers?id=${param.id}`, options);
-    promise
+    fetchDriverPost(search)
       .then((response) => {
         return response.json();
       })
-      .then((values) => {
-        setPost(values.response);
+      .then((json) => {
+        setPostData(json.response);
       })
-  }, []);
+  }, [search.length >= 3]);
 
   const handleOnClick = () => {
     navigate(-1);
   };
 
   return (
-    <div className={styles.postWrap}>
+    <div className={styles.postDriverWrap}>
+      <Input text={search} onChange={handleOnChange} />
       <ul className={styles.postWrapList}>
-        {post.map((item: any) => {
+        {postData.map((item: IDriver ) => {
           return (
-            <>
-              <div className={styles.postWrapListImg}>
-                <img className={styles.postWrapListImgItem} src={item.image} />
-              </div>
-              <li className={styles.postWrapListItem}>
-                <p>Name:</p>
-                <p>{item.name}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Nationality:</p>
-                <p>{item.nationality}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Birthdate:</p>
-                <p>{item.birthdate}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Number:</p>
-                <p>{item.number}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Highest rate finish:</p>
-                <p>{item.highest_rate_finish.position}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Highest grid position:</p>
-                <p>{item.highest_grid_position}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Career points:</p>
-                <p>{item.career_points}</p>
-              </li>
-            </>
+            <PostTemplate
+              type='driver'
+              name={item.name}
+              image={item.image}
+              nationality={item.nationality}
+              birthdate={item.birthdate}
+              number={item.number}
+              highestFinish={item.highest_race_finish.position}
+              highestRatePosition={item.highest_grid_position}
+              careerPoints={item.career_points}
+            />
           )
         })}
       </ul>

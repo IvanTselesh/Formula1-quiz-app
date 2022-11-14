@@ -31,7 +31,7 @@ export const Header = () => {
       </button>
       {user ?
         <User name={user.username} /> :
-        <div>
+        <div className={styles.userButtons}>
           <Button onClick={handleOnLogin} name='Log In' />
           <Button onClick={handleOnSignUp} name='Sign Up' />
         </div>

@@ -5,6 +5,7 @@ import {ChangeEventHandler, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {validateConfirm, validateEmail, validatePassword, validateRequired} from "../../utils/validation";
 import {registrateUser} from "../../api/registration";
+import { NotificationContainer, NotificationManager } from "react-notifications";
 
 export const RegForm = () => {
   const [userName, setUserName] = useState('');
@@ -21,7 +22,11 @@ export const RegForm = () => {
   const handleOnChangeUserName: ChangeEventHandler<HTMLInputElement> = (event) => {
     const error = validateRequired(event.target.value);
     if(error) {
-      setErrorUserName(error);
+      if(event.target.value.length === 0) {
+        setErrorUserName('')
+      } else {
+        setErrorUserName(error);
+      }
     } else {
       setErrorUserName('')
     }
@@ -31,7 +36,11 @@ export const RegForm = () => {
   const handleOnChangeEmail: ChangeEventHandler<HTMLInputElement> = (event) => {
     const error = validateEmail(event.target.value);
     if(error) {
-      setErrorEmail(error)
+      if(event.target.value.length === 0) {
+        setErrorEmail('')
+      } else {
+        setErrorEmail(error)
+      }
     } else {
       setErrorEmail('')
     }
@@ -41,7 +50,11 @@ export const RegForm = () => {
   const handleOnChangePassword: ChangeEventHandler<HTMLInputElement> = (event) => {
     const error = validatePassword(event.target.value);
     if(error) {
-      setErrorPassword(error);
+      if(event.target.value.length === 0) {
+        setErrorPassword('');
+      } else {
+        setErrorPassword(error);
+      }
     } else {
       setErrorPassword('')
     }
@@ -51,7 +64,11 @@ export const RegForm = () => {
   const handleOnChangeRepeatPassword: ChangeEventHandler<HTMLInputElement> = (event) => {
     const error = validateConfirm(password, event.target.value);
     if(error) {
-      setRepeatPassword(error);
+      if(event.target.value.length === 0) {
+        setRepeatPassword('')
+      } else {
+        setRepeatPassword(error);
+      }
     } else {
       setRepeatPassword('')
     }
@@ -76,6 +93,7 @@ export const RegForm = () => {
     const isValid = Object.values(errors).every((error) => error === '');
 
     if(isValid) {
+      localStorage.setItem('email', email);
       const promise = registrateUser(userName, email, password);
       let isOk = true;
 
@@ -94,14 +112,17 @@ export const RegForm = () => {
           } else {
             if (json?.email?.includes('user with this Email already exists.')) {
               setError("User with this Email already exists");
+              NotificationManager.error('Error',`${error}`)
               return;
             };
             if (json?.username?.includes("A user with that username already exists.")) {
               setError('A user with that username already exists.');
+              NotificationManager.error('Error',`${error}`)
               return;
             };
             if(json?.password?.includes("The password is too similar to the username.")) {
               setError("The password is too similar to the username.");
+              NotificationManager.error('Error',`${error}`)
               return;
             };
           }
@@ -126,7 +147,7 @@ export const RegForm = () => {
         <Input text={repeatPassword} placeholder='repeat password' onChange={handleOnChangeRepeatPassword} type='password' />
         <p className={styles.error}>{errorRepeatPassword}</p>
       </div>
-      <Button name='Sign Up' onClick={() => {}}></Button>
+      <Button name='Sign Up' onClick={handleOnClick}></Button>
     </div>
   )
 }

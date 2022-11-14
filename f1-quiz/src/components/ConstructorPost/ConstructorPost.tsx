@@ -1,17 +1,18 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {options} from "../../api/posts";
+import {fetchConstructorPost, options} from "../../api/posts";
 import styles from "../ConstructorPost/style.module.css";
 import {Button} from "../Button/Button";
+import {PostTemplate} from "../PostTemplate/PostTemplate";
+import {IConstructor} from "../../types/post";
 
 export const ConstructorPost = () => {
-  const param = useParams();
   const [post, setPost] = useState<[]>([]);
   const navigate = useNavigate();
+  const param = useParams();
 
   useEffect(() => {
-    const promise = fetch(`https://api-formula-1.p.rapidapi.com/teams?id=${param.id}`, options);
-    promise
+    fetchConstructorPost(param.id)
       .then((response) => {
         return response.json();
       })
@@ -20,52 +21,30 @@ export const ConstructorPost = () => {
       })
   }, []);
 
-  const clickOnHandle = () => {
+  const handleOnClick = () => {
     navigate(-1)
   }
 
   return (
     <div className={styles.postWrap}>
       <ul className={styles.postWrapList}>
-        {post.map((item: any) => {
+        {post.map((item: IConstructor) => {
           return (
-            <>
-              <div className={styles.postWrapListImg}>
-                <img className={styles.postWrapListImgItem} src={item.logo} />
-              </div>
-              <li className={styles.postWrapListItem}>
-                <p>Name:</p>
-                <p>{item.name}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Base:</p>
-                <p>{item.base}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>World championships:</p>
-                <p>{item.world_championships}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Director:</p>
-                <p>{item.director}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Technical manager:</p>
-                <p>{item.technical_manager}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Chassis:</p>
-                <p>{item.chassis}</p>
-              </li>
-              <li className={styles.postWrapListItem}>
-                <p>Engine:</p>
-                <p>{item.engine}</p>
-              </li>
-            </>
+            <PostTemplate
+              type='constructor'
+              name={item.name}
+              image={item.logo}
+              base={item.base}
+              championship={item.world_championships}
+              director={item.director}
+              manager={item.technical_manager}
+              chassis={item.chassis}
+              engine={item.engine}
+            />
           )
         })}
       </ul>
-      <Button name='Return' onClick={clickOnHandle} />
+      <Button name='Return' onClick={handleOnClick} />
     </div>
   )
 }

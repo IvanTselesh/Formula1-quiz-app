@@ -11,14 +11,13 @@ import {QuizPage} from "../pages/QuizPage/QuizPage";
 import {ErrorPage} from "../pages/ErrorPage/ErrorPage";
 import {CircuitItemPage} from "../pages/CircuitItemPage/CircuitItemPage";
 import {ConstructorItemPage} from "../pages/ConstructorItemPage/ConstructorItemPage";
-import {DriverItemPage} from "../pages/DriverItemPage/DriverItemPage";
 
 export const RootRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/reg-success" element={<RegConfirm />} />
-      <Route path="/email-confirm" element={<EmailConfirm />} />
+      <Route path="/email-confirm/:uid/:token" element={<EmailConfirm />} />
       <Route path="/drivers" element={<DriversPage />} />
       <Route path="/constructors" element={<ConstructorsPage />} />
       <Route path="/circuits" element={<CircuitsPage />} />
@@ -27,7 +26,6 @@ export const RootRouter = () => {
       <Route path="/quiz" element={<QuizPage />} />
       <Route path="/circuits/:id" element={<CircuitItemPage />} />
       <Route path="/constructors/:id" element={<ConstructorItemPage />} />
-      <Route path="/drivers/:id" element={<DriverItemPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   )

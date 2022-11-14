@@ -6,7 +6,7 @@ import {Context} from "../../App";
 import {Button} from "../Button/Button";
 
 export const NavBar = () => {
-  const { isDark, setIsDark, user } = useContext(Context);
+  const { isDark, setIsDark, user, setUser } = useContext(Context);
   const navigate = useNavigate();
 
   const handleOnChange = () => {
@@ -14,7 +14,9 @@ export const NavBar = () => {
   };
 
   const handleOnClick = () => {
-
+    navigate("/");
+    setUser(null);
+    localStorage.clear();
   };
 
   return (
