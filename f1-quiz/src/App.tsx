@@ -6,6 +6,8 @@ import {IUser} from "./components/types/auth";
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer } from 'react-notifications';
 import {getUser} from "./api/registration";
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
 
 export const Context = createContext<{
   isDark: boolean;
@@ -66,13 +68,14 @@ function App() {
   }, [isDark])
 
   return (
-    <BrowserRouter>
-      <Context.Provider value={{isDark: isDark, setIsDark: setIsDark, user, setUser}}>
-        {isReady ? <RootRouter /> : null}
-        <NotificationContainer />
-      </Context.Provider>
-
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Context.Provider value={{isDark: isDark, setIsDark: setIsDark, user, setUser}}>
+          {isReady ? <RootRouter /> : null}
+          <NotificationContainer />
+        </Context.Provider>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
