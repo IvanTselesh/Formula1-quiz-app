@@ -3,6 +3,10 @@
     margin-top: 20px;
 }
 
+.errorWrap {
+    text-align: center;
+}
+
 .backgroundImg {
     width: 100%;
     background-size: contain;

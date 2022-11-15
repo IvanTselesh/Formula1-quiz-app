@@ -4,13 +4,24 @@ import styles from "./style.module.css";
 import {useContext, useState} from "react";
 import {NavBar} from "../NavBar/NavBar";
 import {Context} from "../../App";
+import {Button} from "../Button/Button";
+import {useNavigate} from "react-router-dom";
 
 export const Header = () => {
   const [isNavBar, setIsNavBar] = useState(false);
-  const { isDark } = useContext(Context);
+  const { isDark, user } = useContext(Context);
+  const navigate = useNavigate();
 
   const openNavBar = () => {
     setIsNavBar(!isNavBar);
+  };
+
+  const handleOnLogin = () => {
+    navigate('/login');
+  };
+
+  const handleOnSignUp = () => {
+    navigate('/registration');
   };
 
   return <>
@@ -18,7 +29,13 @@ export const Header = () => {
       <button className={styles.navButton} onClick={openNavBar}>
         <img className={isDark ? styles.navButtonImgDark : styles.navButtonImgLight} src={burger} />
       </button>
-      <User name='Michael Schumacher' />
+      {user ?
+        <User name={user.username} /> :
+        <div className={styles.userButtons}>
+          <Button onClick={handleOnLogin} name='Log In' />
+          <Button onClick={handleOnSignUp} name='Sign Up' />
+        </div>
+      }
     </nav>
     {isNavBar ? <NavBar /> : null}
   </>

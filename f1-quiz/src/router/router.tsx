@@ -9,19 +9,23 @@ import {LoginFormPage} from "../pages/LoginFormPage/LoginFormPage";
 import {RegFormPage} from "../pages/RegFormPage/RegFormPage";
 import {QuizPage} from "../pages/QuizPage/QuizPage";
 import {ErrorPage} from "../pages/ErrorPage/ErrorPage";
+import {CircuitItemPage} from "../pages/CircuitItemPage/CircuitItemPage";
+import {ConstructorItemPage} from "../pages/ConstructorItemPage/ConstructorItemPage";
 
 export const RootRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/reg-success" element={<RegConfirm />} />
-      <Route path="/email-confirm" element={<EmailConfirm />} />
+      <Route path="/email-confirm/:uid/:token" element={<EmailConfirm />} />
       <Route path="/drivers" element={<DriversPage />} />
       <Route path="/constructors" element={<ConstructorsPage />} />
       <Route path="/circuits" element={<CircuitsPage />} />
       <Route path="/login" element={<LoginFormPage />} />
       <Route path="/registration" element={<RegFormPage />} />
       <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/circuits/:id" element={<CircuitItemPage />} />
+      <Route path="/constructors/:id" element={<ConstructorItemPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   )

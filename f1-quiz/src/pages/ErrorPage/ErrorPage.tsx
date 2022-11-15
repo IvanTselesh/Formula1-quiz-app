@@ -13,10 +13,12 @@ export const ErrorPage = () => {
 
   return (
     <Container>
-      <h1>OOPS! He missed and you`re too</h1>
-      <Button name='Back home' onClick={handleOnChange} />
-      <div className={styles.background}>
-        <img className={styles.backgroundImg} src={background} />
+      <div className={styles.errorWrap}>
+        <h1>OOPS! You`ve missed, you`d better to return to main page and try again</h1>
+        <Button name='Back home' onClick={handleOnChange} />
+        <div className={styles.background}>
+          <img className={styles.backgroundImg} src={background} />
+      </div>
       </div>
     </Container>
   );
